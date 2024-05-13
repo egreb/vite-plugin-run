@@ -72,6 +72,13 @@ export function run(options: Options = []): Plugin {
 
       handleReload(resolvedOptions, { file, server });
     },
+    buildStart() {
+      resolvedOptions.input.forEach((runner) => {
+        if (runner.build !== false) {
+          handleRunnerCommand(resolvedOptions, runner);
+        }
+      });
+    },
   };
 }
 
